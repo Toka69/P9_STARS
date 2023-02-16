@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StarController;
+use App\Models\Star;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('welcome', ['stars' => Star::all()->sortBy('first_name')]);
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('stars', StarController::class)
+    ->only(['index', 'store', 'create', 'edit', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('/get-star/{id}', [StarController::class, 'getStar']);
+
+require __DIR__ . '/auth.php';
