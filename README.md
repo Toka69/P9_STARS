@@ -11,7 +11,7 @@ The stack is Laravel 9 + PHP 8.2 + Blade + Tailwind + Jquery
 
 ### Installation
 
-For install the app on your desktop in dev environment, Docker and docker-compose are necessary.
+To install the app on your desktop in dev environment, Docker and docker-compose are necessary.
 
 To execute the docker stack
 ```
