@@ -41,6 +41,10 @@ and link the storage folder:
 php artisan storage:link
 ```
 
+Execute the migrations:
+```
+php artisan migrate
+```
 
 ### Execute the QA:
 PHPSTAN :
@@ -50,5 +54,5 @@ PHPSTAN :
 
 PHP-CS-FIXER (For PHP8.2 use the "ignore environment"):
 ```
-PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix
+PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix ./app
 ```
